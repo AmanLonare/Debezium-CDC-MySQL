@@ -3,7 +3,7 @@
 
 The project allows the users to read the changes in the MySQL database using an open source platform for change data capture. Any row level 'INSERT', 'UPDATE' or 'DELETE' operations on any tables of MySQL database can be captured as a change event with the help of a MySQL connector provided by the Debezium. The change events are stored in Kafka from where client applications can read and use these events as per their use cases.  MySQL has a binary log (binlog) that records any changes in the schema of table or any 'INSERT', 'UPDATE' or 'DELETE' operations on the table in the order in which they are committed. MySQL Debezium source connector reads the binlog sequentially and produce these change data events for the consumers.The following is the complete architecture that we are going to achieve: 
 
-![Debezium-MySQL!](Architecture/ProjectArchitecture.png)
+![Debezium-MySQL!](debezium-jdbc/ProjectArchitecture.png)
 
 The following are the steps we will go through in this project
 - Spin up docker containers of Apacha Kafka, Zookeeper, Kafka Connect, MySQL, Schema Registry
@@ -135,7 +135,7 @@ $ curl -H "Accept:application/json" localhost:8083/connectors/
 ["inventory-connector"]
 ```
 
-We will use a CommandLine tool [kafkacat] for interacting with Kafka brokers. Before using kafkacat, you show know the network in which your containers are running. Docker compose command will vreate a default network for you where all the containers are running together. In my case the name of the default network is "debezium-cdc-mysql_default".
+We will use a CommandLine tool [kafkacat] for interacting with Kafka brokers. Before using kafkacat, you should know the network in which your containers are running. Docker compose command will create a default network for you where all the containers are running together. In my case the name of the default network is "debezium-cdc-mysql_default".
 
 ```sh
 $ docker network ls
